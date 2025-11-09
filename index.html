@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Web Page</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #222222;
+      --accent-color: #2563eb;
+      --nav-bg: #f8f8f8;
+      --footer-bg: #f8f8f8;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #f4f4f4;
+      --nav-bg: #1f1f1f;
+      --footer-bg: #1f1f1f;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* Navbar */
+    nav {
+      background-color: var(--nav-bg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    .dark-mode-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--text-color);
+      transition: color 0.3s;
+    }
+
+    .dark-mode-toggle:hover {
+      color: var(--accent-color);
+    }
+
+    /* Main Content */
+    main {
+      padding: 3rem 2rem;
+      min-height: 70vh;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--footer-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      gap: 1rem;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    }
+
+    .socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .socials a {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .socials a:hover {
+      color: var(--accent-color);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Stumps</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Contact</a>
+      <button class="dark-mode-toggle" id="darkModeBtn">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Stumps Cricket</h1>
+    <p>Book sessions, order tailored training packages and compete in our mini-league!</p>
+  </main>
+
+  <footer>
+    <div class="socials">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+    <small>© 2025 Stumps. All rights reserved.</small>
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('darkModeBtn');
+    const body = document.body;
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const icon = toggleBtn.querySelector('i');
+      if (body.classList.contains('dark')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+      }
+    });
+  </script>
+</body>
+</html>
