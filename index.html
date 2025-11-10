@@ -48,7 +48,7 @@
     }
 
     a:hover, button:hover, i:hover {
-      transform: scale(1.05);
+      transform: scale(1.2);
     }
 
     input:focus, select:focus, textarea:focus {
@@ -179,14 +179,14 @@
 
     button.book-btn:hover {
       opacity: 0.9;
-      transform: scale(1.02);
+      transform: scale(1.2);
     }
 
     /* Footer */
     footer {
       background-color: var(--footer-bg);
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
@@ -210,6 +210,8 @@
 
     .footer-links {
       display: flex;
+      flex-direction: row;
+      align-items: center;
       gap: 1.5rem;
     }
 
@@ -244,7 +246,12 @@
 </head>
 <body>
   <nav>
-    <div class="logo">Stumps</div>
+    <img
+      src="images/stumps_logo_full.png"
+      alt="Stumps | Cricket Coaching and Mini League"
+      style="width: 60%; height: auto;"
+      class="brand-logo"
+    />
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#">Contact</a>
