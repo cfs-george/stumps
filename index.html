@@ -107,7 +107,7 @@
       flex: 2;
       background-color: var(--nav-bg);
       border-radius: var(--border-radius);
-      height: 700px;
+      /* height: 700px; */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -119,9 +119,9 @@
     .carousel-slide {
       opacity: 0;
       position: absolute;
-      transition: opacity 0.8s ease-in-out;
+      transition: opacity 0.4s ease-in-out;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
       text-align: center;
@@ -148,7 +148,7 @@
       margin-top: 30px;
       font-size: 1.4rem;
       font-weight: 500;
-      color: var(--text-color);
+      color: var(--accent-color);
       max-width: 90%;
     }
 
@@ -333,13 +333,13 @@
     <div class="carousel">
       <div class="carousel-slide active">
         <img src="images/subscription_plans.png" alt="Subscription Plans" />
-        <p>Tailor-made coaching plans and training packages for grass roots clubs.<br>
-        Bespoke to the age group, ability and customisation available upon request.</p>
+        <p>Tailor-made coaching plans and training packages for grass roots clubs<br>
+        Bespoke to the age group, ability and customisation available upon request</p>
       </div>
       <div class="carousel-slide">
         <img src="images/top_5_bowlers.png" alt="Top 5 Bowlers" />
-        <p>Indoor cricket mini leagues coming soon.<br>
-        Register with your team for fast-paced weekly fun against other competitive teams.</p>
+        <p>Indoor cricket mini leagues coming soon<br>
+        Register with your team for fast-paced weekly fun against other competitive teams</p>
       </div>
     </div>
 
@@ -447,7 +447,7 @@
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add('active');
-    }, 4000);
+    }, 5000);
   </script>
 </body>
 </html>
