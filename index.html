@@ -144,11 +144,24 @@
       box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     }
 
-    .carousel-slide p {
+    .carousel-text-container {
+      width: 40%;
+      text-align: center;
+    }
+
+    .carousel-text-container h3 {
       margin-top: 30px;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      max-width: 90%;
+    }
+
+    .carousel-text-container p {
+      margin-top: 20px;
       font-size: 1.4rem;
       font-weight: 500;
-      color: var(--accent-color);
+      color: var(--text-color);
       max-width: 90%;
     }
 
@@ -333,13 +346,17 @@
     <div class="carousel">
       <div class="carousel-slide active">
         <img src="images/subscription_plans.png" alt="Subscription Plans" />
-        <p>Tailor-made coaching plans and training packages for grass roots clubs<br>
-        Bespoke to the age group, ability and customisation available upon request</p>
+        <div class="carousel-text-container">
+          <h3>Coaching Plans and Training Packages for Grass Roots Clubs</h3>
+          <p>Tailor-made for all age groups and abilities. Customisation available upon request</p>
+        </div>
       </div>
       <div class="carousel-slide">
         <img src="images/top_5_bowlers.png" alt="Top 5 Bowlers" />
-        <p>Indoor cricket mini leagues coming soon<br>
-        Register with your team for fast-paced weekly fun against other competitive teams</p>
+        <div class="carousel-text-container">
+          <h3>Indoor Cricket Mini Leagues<br>Coming Soon!</h3>
+          <p>Register with your team for fast-paced weekly fun against other competitive teams</p>
+        </div>
       </div>
     </div>
 
