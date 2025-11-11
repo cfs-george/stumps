@@ -118,6 +118,8 @@
       color: #999;
       font-style: italic;
       box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      text-align: center;
+      padding: 2rem;
     }
 
     .booking-card {
@@ -159,6 +161,32 @@
       border-color: var(--accent-color);
     }
 
+    /* Toggle Switch */
+    .toggle-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--bg-color);
+      border: 1px solid #ccc;
+      border-radius: var(--border-radius);
+      padding: 0.5rem;
+    }
+
+    .toggle-option {
+      flex: 1;
+      text-align: center;
+      padding: 0.5rem;
+      cursor: pointer;
+      border-radius: var(--border-radius);
+      user-select: none;
+      font-weight: 500;
+    }
+
+    .toggle-option.active {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
     button.book-btn {
       background-color: var(--accent-color);
       color: white;
@@ -197,7 +225,7 @@
 
     .socials {
       display: flex;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
     .socials a {
@@ -265,7 +293,7 @@
       <p>
         Placeholder for training packages and mini league preview
         <br><br>
-        Require sign in to access these, build authentication system next
+        Require sign in to access these — build authentication system next.
       </p>
     </div>
 
@@ -277,22 +305,42 @@
           <input type="text" id="name" placeholder="Enter your name" required />
         </div>
         <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" id="age" placeholder="Enter your age" required />
+        </div>
+        <div class="form-group">
+          <label for="contact">Contact Number</label>
+          <input type="tel" id="contact" placeholder="Enter your contact number" required />
+        </div>
+        <div class="form-group">
           <label for="email">Email Address</label>
           <input type="email" id="email" placeholder="Enter your email" required />
         </div>
         <div class="form-group">
-          <label for="date">Preferred Date</label>
-          <input type="date" id="date" required />
+          <label for="time">Session Time (Fridays)</label>
+          <select id="time" required>
+            <option value="">Select a time</option>
+            <option value="5-6pm">5–6 PM</option>
+            <option value="6-7pm">6–7 PM</option>
+            <option value="7-8pm">7–8 PM</option>
+          </select>
         </div>
         <div class="form-group">
-          <label for="session">Session Type</label>
-          <select id="session" required>
-            <option value="">Select a session</option>
-            <option value="batting">Batting Coaching</option>
-            <option value="bowling">Bowling Coaching</option>
-            <option value="fielding">Fielding Practice</option>
-            <option value="fitness">Fitness Training</option>
+          <label for="focus">Preferred Session Focus</label>
+          <select id="focus" required>
+            <option value="">Select focus</option>
+            <option value="batting">Batting</option>
+            <option value="bowling">Bowling</option>
+            <option value="fielding">Fielding</option>
+            <option value="mixed">Mixed</option>
           </select>
+        </div>
+        <div class="form-group">
+          <label>Session Type</label>
+          <div class="toggle-container" id="sessionTypeToggle">
+            <div class="toggle-option active" data-type="individual">Individual</div>
+            <div class="toggle-option" data-type="group">Group</div>
+          </div>
         </div>
         <button type="submit" class="book-btn"><i class="fa-solid fa-paper-plane"></i> Submit Booking</button>
       </form>
@@ -319,11 +367,18 @@
     toggleBtn.addEventListener('click', () => {
       body.classList.toggle('dark');
       const icon = toggleBtn.querySelector('i');
-      if (body.classList.contains('dark')) {
-        icon.classList.replace('fa-moon', 'fa-lightbulb');
-      } else {
-        icon.classList.replace('fa-lightbulb', 'fa-moon');
-      }
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-lightbulb');
+    });
+
+    // Switch toggle logic
+    const toggleContainer = document.getElementById('sessionTypeToggle');
+    const options = toggleContainer.querySelectorAll('.toggle-option');
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+      });
     });
   </script>
 </body>
