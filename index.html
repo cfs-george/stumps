@@ -109,6 +109,7 @@
       border-radius: var(--border-radius);
       /* height: 700px; */
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
@@ -119,7 +120,7 @@
     .carousel-slide {
       opacity: 0;
       position: absolute;
-      transition: opacity 0.4s ease-in-out;
+      transition: opacity 0.25s ease-in-out;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -165,6 +166,23 @@
       max-width: 90%;
     }
 
+    .carousel-signup p {
+      text-align: center;
+    }
+
+    .book-btn {
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+
     /* Booking card */
     .booking-card {
       flex: 1;
@@ -189,7 +207,7 @@
 
     label {
       margin-bottom: 0.3rem;
-      margin-left: 10px;
+      margin-left: 4px;
       font-weight: 500;
     }
 
@@ -349,18 +367,18 @@
         <img src="images/subscription_plans.png" alt="Subscription Plans" />
         <div class="carousel-text-container">
           <h3>Coaching Plans and Training Packages for Grass Roots Clubs</h3>
-          <p>Tailor-made for all age groups and abilities. Customisation available upon request</p>
+          <p>Tailor-made for all age groups and abilities. Customisation available upon request.</p>
         </div>
       </div>
       <div class="carousel-slide">
         <img src="images/top_5_bowlers.png" alt="Top 5 Bowlers" />
         <div class="carousel-text-container">
           <h3>Indoor Cricket Mini Leagues<br><br>Coming Soon...</h3>
-          <p>Register with your team for fast-paced weekly fun against other competitive teams</p>
+          <p>Register with your team for fast-paced weekly fun against other competitive teams.</p>
         </div>
       </div>
-      <div>
-        <p>Create an account here to access these features</p>
+      <div class="carousel-signup">
+        <p>Create an account here to access these features.</p>
         <button class="book-btn"><i class="fa-solid fa-user"></i> Sign Up</button>
       </div>
     </div>
