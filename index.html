@@ -107,11 +107,11 @@
       flex: 2;
       background-color: var(--nav-bg);
       border-radius: var(--border-radius);
-      /* height: 700px; */
+      height: 700px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       position: relative;
       overflow: hidden;
       box-shadow: 0 3px 10px rgba(0,0,0,0.05);
@@ -137,7 +137,7 @@
     }
 
     .carousel-slide img {
-      max-height: 500px;
+      max-height: 440px;
       width: auto;
       aspect-ratio: 1 / 1;
       border-radius: var(--border-radius);
@@ -171,6 +171,7 @@
     }
 
     .book-btn {
+      width: 40%;
       background-color: var(--accent-color);
       color: var(--bg-color);
       border: none;
@@ -378,8 +379,8 @@
         </div>
       </div>
       <div class="carousel-signup">
-        <p>Create an account here to access these features.</p>
-        <button class="book-btn"><i class="fa-solid fa-user"></i> Sign Up</button>
+        <p>Sign up here to access these features</p>
+        <button class="book-btn">Let's go <i class="fa-solid fa-baseball-bat-ball"></i></button>
       </div>
     </div>
 
