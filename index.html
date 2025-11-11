@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="color-scheme" content="dark light">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stumps | Cricket Coaching and Mini League</title>
   <link
@@ -75,13 +76,17 @@
       align-items: center;
     }
 
-    .nav-links a {
+    .nav-links a, .nav-links button {
       text-decoration: none;
       color: var(--text-color);
       font-weight: 500;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover, .nav-links button:hover {
       color: var(--accent-color);
     }
 
@@ -97,17 +102,8 @@
       color: var(--accent-color);
     }
 
-    /* Main Layout */
-    main {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 3rem 2rem 5rem;
-      min-height: 70vh;
-      gap: 2rem;
-    }
-
-    .left-content {
+    /* Carousel */
+    .carousel {
       flex: 2;
       background-color: var(--nav-bg);
       border-radius: var(--border-radius);
@@ -115,13 +111,29 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #999;
-      font-style: italic;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      color: var(--text-color);
       text-align: center;
+      font-size: 1.2rem;
+      font-weight: 500;
       padding: 2rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
     }
 
+    .carousel-slide {
+      opacity: 0;
+      position: absolute;
+      transition: opacity 0.6s ease-in-out;
+      max-width: 90%;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    /* Booking card */
     .booking-card {
       flex: 1;
       background-color: var(--nav-bg);
@@ -204,6 +216,16 @@
       transform: scale(1.05);
     }
 
+    /* Layout */
+    main {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 3rem 2rem 5rem;
+      min-height: 70vh;
+      gap: 2rem;
+    }
+
     /* Footer */
     footer {
       background-color: var(--footer-bg);
@@ -263,7 +285,7 @@
       main {
         flex-direction: column;
       }
-      .left-content {
+      .carousel {
         height: 200px;
       }
       .booking-card {
@@ -272,7 +294,7 @@
     }
   </style>
 </head>
-<body>
+<body class="dark">
   <nav>
     <img
       src="images/stumps_logo_full.png"
@@ -281,20 +303,23 @@
     />
     <div class="nav-links">
       <a href="#">Home</a>
-      <a href="#">Contact</a>
+      <button id="scrollToBottom">Contact</button>
     </div>
     <button class="dark-mode-toggle" id="darkModeBtn">
-      <i class="fa-solid fa-moon"></i>
+      <i class="fa-solid fa-lightbulb"></i>
     </button>
   </nav>
 
   <main>
-    <div class="left-content">
-      <p>
-        Placeholder for training packages and mini league preview
-        <br><br>
-        Require sign in to access these — build authentication system next.
-      </p>
+    <div class="carousel">
+      <div class="carousel-slide active">
+        Tailor-made coaching plans and training packages for grass roots clubs.<br>
+        Bespoke to the age group, ability and customisation available upon request.
+      </div>
+      <div class="carousel-slide">
+        Indoor cricket mini leagues coming soon.<br>
+        Register with your team for fast-paced weekly fun against other competitive teams.
+      </div>
     </div>
 
     <section class="booking-card">
@@ -347,7 +372,7 @@
     </section>
   </main>
 
-  <footer>
+  <footer id="contact">
     <div class="footer-top">
       <div class="socials">
         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -362,16 +387,19 @@
   </footer>
 
   <script>
+    // Dark mode default
+    document.body.classList.add('dark');
+
+    // Dark mode toggle
     const toggleBtn = document.getElementById('darkModeBtn');
-    const body = document.body;
     toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark');
+      document.body.classList.toggle('dark');
       const icon = toggleBtn.querySelector('i');
-      icon.classList.toggle('fa-moon');
       icon.classList.toggle('fa-lightbulb');
+      icon.classList.toggle('fa-moon');
     });
 
-    // Switch toggle logic
+    // Session type toggle
     const toggleContainer = document.getElementById('sessionTypeToggle');
     const options = toggleContainer.querySelectorAll('.toggle-option');
     options.forEach(opt => {
@@ -380,6 +408,25 @@
         opt.classList.add('active');
       });
     });
+
+    // Scroll-to-bottom for contact
+    document.addEventListener('DOMContentLoaded', () => {
+      const scrollButton = document.getElementById('scrollToBottom');
+      if (scrollButton) {
+        scrollButton.addEventListener('click', () => {
+          document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+    });
+
+    // Carousel auto progress
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+    setInterval(() => {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, 2000);
   </script>
 </body>
 </html>
