@@ -68,7 +68,7 @@
       height: auto;
       position: absolute;
       left: 50%;
-      top: 50%;
+      top: 60%;
       transform: translate(-50%, -50%);
     }
     .nav-links {
@@ -219,6 +219,14 @@
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
       text-align: left;
       display: none;
+      position: relative;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .booking-card.open {
+      opacity: 1;
+      transform: translateX(0);
     }
     .booking-card h2 {
       text-align: center;
@@ -282,6 +290,20 @@
     }
     button.book-btn:hover {
       transform: scale(1.05);
+    }
+    /* Close button for booking */
+    #closeBooking {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    #closeBooking:hover {
+      color: var(--accent-color);
     }
     /* Layout */
     main {
@@ -516,6 +538,7 @@
       </div>
     </div>
     <section class="booking-card" id="booking">
+      <button id="closeBooking"><i class="fa-solid fa-times"></i></button>
       <h2><i class="fa-solid fa-calendar-check"></i> Book a Session</h2>
       <form>
         <div class="form-group">
@@ -621,8 +644,20 @@
     bookBtn.addEventListener('click', () => {
       const booking = document.getElementById('booking');
       booking.style.display = 'block';
+      requestAnimationFrame(() => {
+        booking.classList.add('open');
+      });
       booking.scrollIntoView({ behavior: 'smooth' });
       sideTray.classList.remove('open');
+    });
+    // Close booking
+    const closeBooking = document.getElementById('closeBooking');
+    closeBooking.addEventListener('click', () => {
+      const booking = document.getElementById('booking');
+      booking.classList.remove('open');
+      booking.addEventListener('transitionend', () => {
+        booking.style.display = 'none';
+      }, {once: true});
     });
     // Carousel auto progress + dot controls
     const slides = document.querySelectorAll('.carousel-slide');
