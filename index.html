@@ -57,6 +57,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      position: relative;
     }
     .brand-logo {
       max-width: 140px;
@@ -65,6 +66,10 @@
     .center-logo {
       max-width: 140px;
       height: auto;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
     .nav-links {
       display: flex;
@@ -213,6 +218,7 @@
       border-radius: var(--border-radius);
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
       text-align: left;
+      display: none;
     }
     .booking-card h2 {
       text-align: center;
@@ -613,7 +619,9 @@
       sideTray.classList.remove('open');
     });
     bookBtn.addEventListener('click', () => {
-      document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+      const booking = document.getElementById('booking');
+      booking.style.display = 'block';
+      booking.scrollIntoView({ behavior: 'smooth' });
       sideTray.classList.remove('open');
     });
     // Carousel auto progress + dot controls
