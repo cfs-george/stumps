@@ -33,9 +33,23 @@
       box-sizing: border-box;
       transition: all 0.25s ease;
     }
+    @font-face {
+      font-family: 'Gellix';
+      src: url('fonts/Gellix-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gellix';
+      src:  url('fonts/Gellix-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Gellix', 'Inter', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       display: flex;
@@ -482,6 +496,9 @@
       gap: 1rem;
       align-items: center;
     }
+    .nav-left {
+      width: 1px;
+    }
     .menu-toggle {
       background: none;
       border: none;
@@ -530,15 +547,11 @@
 </head>
 <body class="dark">
   <nav>
+    <div class="nav-left"></div>
     <img
       src="images/stumps_logo_full.png"
       alt="Stumps | Cricket Coaching and Mini League"
       class="brand-logo"
-    />
-    <img
-      src="images/stumps_crest.png"
-      alt="Stumps | Cricket Coaching and Mini League"
-      class="center-logo"
     />
     <div class="nav-right">
       <button class="dark-mode-toggle" id="darkModeBtn">
