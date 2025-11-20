@@ -342,6 +342,20 @@
       background-size: cover;
       background-position: center;
     }
+    /* Info text section */
+    .info-section {
+      flex: 1;
+      background-color: var(--nav-bg);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      text-align: left;
+    }
+    .info-section p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
     /* Footer */
     footer {
       background-color: var(--footer-bg);
@@ -549,9 +563,10 @@
   <nav>
     <div class="nav-left"></div>
     <img
-      src="images/stumps_logo_full.png"
+      src="images/stumps_cricket_dark.png"
       alt="Stumps | Cricket Coaching and Mini League"
       class="brand-logo"
+      id="brandLogo"
     />
     <div class="nav-right">
       <button class="dark-mode-toggle" id="darkModeBtn">
@@ -579,7 +594,7 @@
   <main>
     <!-- Updated Carousel HTML -->
     <div class="carousel">
-      <div class="carousel-slides-container">
+      <!-- <div class="carousel-slides-container">
         <div class="carousel-slide active">
           <img src="images/subscription_plans.png" alt="Subscription Plans" />
           <div class="carousel-text-container">
@@ -594,7 +609,7 @@
             <p>Register with your team for fast-paced weekly fun against other competitive teams.</p>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- Signup section now cleanly separated and perfectly centered -->
       <div class="carousel-signup">
         <p>Sign up here to access these features</p>
@@ -605,6 +620,9 @@
         <span class="dot active" data-slide="0"></span>
         <span class="dot" data-slide="1"></span>
       </div>
+    </div>
+    <div class="info-section">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     </div>
     <section class="booking-card" id="booking">
       <button id="closeBooking"><i class="fa-solid fa-times"></i></button>
@@ -680,6 +698,13 @@
       const icon = toggleBtn.querySelector('i');
       icon.classList.toggle('fa-lightbulb');
       icon.classList.toggle('fa-moon');
+      // Switch logo based on mode
+      const brandLogo = document.getElementById('brandLogo');
+      if (document.body.classList.contains('dark')) {
+        brandLogo.src = 'images/stumps_cricket_dark.png';
+      } else {
+        brandLogo.src = 'images/stumps_cricket_light.png';
+      }
     });
     // Session type toggle
     const toggleContainer = document.getElementById('sessionTypeToggle');
