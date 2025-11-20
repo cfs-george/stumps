@@ -232,6 +232,8 @@
       max-width: 500px;
       opacity: 0;
       transition: opacity 0.3s ease;
+      max-height: 80vh;
+      overflow-y: auto;
     }
     .booking-card.open {
       opacity: 1;
@@ -431,6 +433,8 @@
       box-shadow: -2px 0 5px rgba(0,0,0,0.1);
       transition: right 0.3s ease;
       z-index: 200;
+      display: flex;
+      flex-direction: column;
     }
     .side-tray.open {
       right: 0;
@@ -454,6 +458,7 @@
       list-style: none;
       padding: 0;
       margin: 0;
+      flex: 1;
     }
     .tray-links li {
       padding: 1rem 2rem;
@@ -501,6 +506,26 @@
     .modal-overlay.open {
       display: block;
     }
+    .auth-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    .auth-container button {
+      flex: 1;
+      margin: 0 0.5rem;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .auth-container button:hover {
+      color: var(--accent-color);
+    }
   </style>
 </head>
 <body class="dark">
@@ -532,9 +557,11 @@
       <li><button id="homeBtn">Home</button></li>
       <li><button id="contactBtn">Contact</button></li>
       <li><button id="bookBtn">Book a Session</button></li>
-      <li><button id="loginBtn">Login</button></li>
-      <li><button id="signupBtn">Signup</button></li>
     </ul>
+    <div class="auth-container">
+      <button id="loginBtn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+      <button id="signupBtn"><i class="fa-solid fa-user-plus"></i> Signup</button>
+    </div>
   </div>
   <main>
     <!-- Updated Carousel HTML -->
