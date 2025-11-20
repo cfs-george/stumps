@@ -77,11 +77,11 @@
       position: relative;
     }
     .brand-logo {
-      max-width: 140px;
+      max-width: 180px;
       height: auto;
     }
     .center-logo {
-      max-width: 140px;
+      max-width: 180px;
       height: auto;
       position: absolute;
       left: 50%;
@@ -449,6 +449,10 @@
         max-width: 100px;
         height: auto;
       }
+      .center-logo {
+        max-width: 100px;
+        height: auto;
+      }
     }
     /* Side Tray Styles */
     .side-tray {
@@ -565,7 +569,7 @@
     <img
       src="images/stumps_circle_dark.png"
       alt="Stumps | Cricket Coaching and Mini League"
-      class="brand-logo"
+      class="center-logo"
       id="brandLogo"
     />
     <div class="nav-right">
@@ -592,6 +596,7 @@
     </div>
   </div>
   <main>
+    
     <!-- Updated Carousel HTML -->
     <!-- <div class="carousel">
       <div class="carousel-slides-container">
@@ -619,13 +624,15 @@
         <span class="dot" data-slide="1"></span>
       </div>
     </div> -->
+
     <div class="info-section">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="carousel-signup">
+        <p>Join us at Stumps Cricket as we help shape the next generation of cricketers and bring new energy to the game we love</p>
+        <button class="book-btn" id="carouselBookBtn">Let's go <i class="fa-solid fa-baseball-bat-ball"></i></button>
+      </div>
     </div>
-    <div class="carousel-signup">
-      <p>Sign up here to access these features</p>
-      <button class="book-btn" id="carouselBookBtn">Let's go <i class="fa-solid fa-baseball-bat-ball"></i></button>
-    </div>
+    
     <section class="booking-card" id="booking">
       <button id="closeBooking"><i class="fa-solid fa-times"></i></button>
       <h2><i class="fa-solid fa-calendar-check"></i> Book a Session</h2>
