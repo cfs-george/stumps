@@ -257,9 +257,19 @@
       position: static;
       transform: none;
       width: auto;
-      max-width: 500px;
+      max-width: 1000px;
       max-height: 80vh;
       overflow-y: auto;
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+    .booking-card .booking-text {
+      flex: 1;
+      text-align: left;
+    }
+    .booking-card .booking-form {
+      flex: 1;
     }
     .booking-card h2 {
       text-align: center;
@@ -286,6 +296,11 @@
     }
     input:hover, select:hover {
       border-color: var(--accent-color);
+    }
+    input:focus, select:focus {
+      border-color: var(--accent-color);
+      outline: none;
+      box-shadow: 0 0 5px var(--accent-color);
     }
     /* Toggle Switch */
     .toggle-container {
@@ -337,24 +352,6 @@
     }
     #closeBooking:hover {
       color: var(--accent-color);
-    }
-    /* Booking info text section */
-    .booking-info {
-      flex: 1;
-      background-color: var(--nav-bg);
-      padding: 2rem;
-      border-radius: var(--border-radius);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-      text-align: left;
-      width: auto;
-      max-width: 500px;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-    .booking-info p {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.5;
     }
     /* Layout */
     main {
@@ -597,6 +594,34 @@
       .booking-modal {
         flex-direction: column;
       }
+      .booking-card {
+        flex-direction: column;
+      }
+    }
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--nav-bg);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #e67e22; /* darker accent */
+    }
+    /* For Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-color) var(--nav-bg);
+    }
+    /* For IE/Edge */
+    * {
+      -ms-overflow-style: -ms-autohiding-scrollbar;
     }
   </style>
 </head>
@@ -677,54 +702,56 @@
       <section class="booking-card" id="booking">
         <button id="closeBooking"><i class="fa-solid fa-times"></i></button>
         <h2><i class="fa-solid fa-calendar-check"></i> Book a Session</h2>
-        <form>
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="Enter your name" required />
-          </div>
-          <div class="form-group">
-            <label for="age">Age</label>
-            <input type="number" id="age" placeholder="Enter your age" required />
-          </div>
-          <div class="form-group">
-            <label for="contact">Contact Number</label>
-            <input type="tel" id="contact" placeholder="Enter your contact number" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="Enter your email" required />
-          </div>
-          <div class="form-group">
-            <label for="time">Session Time (Fridays)</label>
-            <select id="time" required>
-              <option value="">Select a time</option>
-              <option value="5-6pm">5–6 PM</option>
-              <option value="6-7pm">6–7 PM</option>
-              <option value="7-8pm">7–8 PM</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="focus">Preferred Session Focus</label>
-            <select id="focus" required>
-              <option value="">Select focus</option>
-              <option value="batting">Batting</option>
-              <option value="bowling">Bowling</option>
-              <option value="fielding">Fielding</option>
-              <option value="mixed">Mixed</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Session Type</label>
-            <div class="toggle-container" id="sessionTypeToggle">
-              <div class="toggle-option active" data-type="individual">Individual</div>
-              <div class="toggle-option" data-type="group">Group</div>
+        <div class="booking-text">
+          <p>Our coaches blend innovation with the foundations of the game, using dynamic sessions, fresh ideas and creative challenges to keep players motivated and progressing. We believe cricket should be fun, accessible and forward-thinking — and that everyone deserves the opportunity to experience the joy of the sport in their own way.</p>
+        </div>
+        <div class="booking-form">
+          <form>
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="Enter your name" required />
             </div>
-          </div>
-          <button type="submit" class="book-btn"><i class="fa-solid fa-paper-plane"></i> Submit Booking</button>
-        </form>
-      </section>
-      <section class="booking-info" id="bookingInfo">
-        <p>Our coaches blend innovation with the foundations of the game, using dynamic sessions, fresh ideas and creative challenges to keep players motivated and progressing. We believe cricket should be fun, accessible and forward-thinking — and that everyone deserves the opportunity to experience the joy of the sport in their own way.</p>
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" placeholder="Enter your age" required />
+            </div>
+            <div class="form-group">
+              <label for="contact">Contact Number</label>
+              <input type="tel" id="contact" placeholder="Enter your contact number" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+              <label for="time">Session Time (Fridays)</label>
+              <select id="time" required>
+                <option value="">Select a time</option>
+                <option value="5-6pm">5–6 PM</option>
+                <option value="6-7pm">6–7 PM</option>
+                <option value="7-8pm">7–8 PM</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="focus">Preferred Session Focus</label>
+              <select id="focus" required>
+                <option value="">Select focus</option>
+                <option value="batting">Batting</option>
+                <option value="bowling">Bowling</option>
+                <option value="fielding">Fielding</option>
+                <option value="mixed">Mixed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Session Type</label>
+              <div class="toggle-container" id="sessionTypeToggle">
+                <div class="toggle-option active" data-type="individual">Individual</div>
+                <div class="toggle-option" data-type="group">Group</div>
+              </div>
+            </div>
+            <button type="submit" class="book-btn"><i class="fa-solid fa-paper-plane"></i> Submit Booking</button>
+          </form>
+        </div>
       </section>
     </div>
   </main>
