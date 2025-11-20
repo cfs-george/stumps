@@ -81,11 +81,11 @@
       height: auto;
     }
     .center-logo {
-      max-width: 180px;
+      max-width: 160px;
       height: auto;
       position: absolute;
       left: 50%;
-      top: 100%;
+      top: 120%;
       transform: translate(-50%, -50%);
       /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
     }
@@ -342,6 +342,9 @@
       background-size: cover;
       background-position: center;
     }
+    .section-content {
+      height: 200px;
+    }
     /* Info text section */
     .info-section {
       flex: 1;
@@ -401,58 +404,6 @@
       opacity: 0.7;
       font-size: 0.85rem;
       margin-top: 0.5rem;
-    }
-    /* Mobile responsiveness */
-    @media (max-width: 800px) {
-      main {
-        flex-direction: column;
-      }
-      .carousel {
-        height: auto;
-        min-height: 400px;
-      }
-      .carousel-slides-container {
-        height: 55%;
-      }
-      .carousel-slide {
-        flex-direction: column;
-        padding: 1.5rem;
-        text-align: center;
-        min-height: 375px;
-      }
-      .carousel-slide img {
-        max-height: 200px;
-      }
-      .carousel-text-container {
-        width: 100%;
-        text-align: center;
-      }
-      .carousel-text-container h3 {
-        font-size: 1.3rem;
-      }
-      .carousel-signup {
-        padding: 2rem 1rem;
-      }
-      .carousel-signup p {
-        text-align: center;
-      }
-      .carousel-signup .book-btn {
-        width: 80%;
-      }
-      .booking-card {
-        width: 86%;
-        height: 80%;
-        font-size: 14px;
-        padding: 3rem;
-      }
-      .brand-logo {
-        max-width: 100px;
-        height: auto;
-      }
-      .center-logo {
-        max-width: 100px;
-        height: auto;
-      }
     }
     /* Side Tray Styles */
     .side-tray {
@@ -561,6 +512,58 @@
     .auth-container button:hover {
       color: var(--accent-color);
     }
+    /* Mobile responsiveness */
+    @media (max-width: 800px) {
+      main {
+        flex-direction: column;
+      }
+      .carousel {
+        height: auto;
+        min-height: 400px;
+      }
+      .carousel-slides-container {
+        height: 55%;
+      }
+      .carousel-slide {
+        flex-direction: column;
+        padding: 1.5rem;
+        text-align: center;
+        min-height: 375px;
+      }
+      .carousel-slide img {
+        max-height: 200px;
+      }
+      .carousel-text-container {
+        width: 100%;
+        text-align: center;
+      }
+      .carousel-text-container h3 {
+        font-size: 1.3rem;
+      }
+      .carousel-signup {
+        padding: 2rem 1rem;
+      }
+      .carousel-signup p {
+        text-align: center;
+      }
+      .carousel-signup .book-btn {
+        width: 80%;
+      }
+      .booking-card {
+        width: 86%;
+        height: 80%;
+        font-size: 14px;
+        padding: 3rem;
+      }
+      .brand-logo {
+        max-width: 100px;
+        height: auto;
+      }
+      .center-logo {
+        max-width: 100px;
+        height: auto;
+      }
+    }
   </style>
 </head>
 <body class="dark">
@@ -626,7 +629,10 @@
     </div> -->
 
     <div class="info-section">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>At Stumps Cricket, our mission is simple: to re-energise cricket in the UK. We deliver exciting, modern and inclusive coaching programmes designed to inspire players of every age and ability. Whether someone is picking up a bat for the very first time, sharpening their skills for club cricket, or striving for higher-level performance, we create an environment that sparks passion, confidence and growth.</p>
+      <div class="section-content">
+        <p>Put feature content here</p>
+      </div>
       <div class="carousel-signup">
         <p>Join us at Stumps Cricket as we help shape the next generation of cricketers and bring new energy to the game we love</p>
         <button class="book-btn" id="carouselBookBtn">Let's go <i class="fa-solid fa-baseball-bat-ball"></i></button>
