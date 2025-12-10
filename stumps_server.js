@@ -199,7 +199,9 @@ app.get('/', csrfProtection, async (req, res) => {
     stumps_circle_light: '/stumps_circle_light.png',
     stumps_logo_full: '/stumps_logo_full.png',
     favicon: '/stumps_logo_small.png',
-    victory: '/victory.png',
+    background_image: '/victory.png',
+    subscription_plans: '/subscription_plans.png',
+    top_5_bowlers: '/top_5_bowlers.png',
     csrfToken: req.csrfToken()
   });
 });
