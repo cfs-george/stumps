@@ -199,6 +199,7 @@ app.get('/', csrfProtection, async (req, res) => {
     stumps_circle_light: '/stumps_circle_light.png',
     stumps_logo_full: '/stumps_logo_full.png',
     favicon: '/stumps_logo_small.png',
+    victory: '/victory.png',
     csrfToken: req.csrfToken()
   });
 });
