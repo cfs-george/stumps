@@ -345,7 +345,7 @@ main {
   padding: 4.5rem 2rem 5rem;
   min-height: auto;
   gap: 2rem;
-  background-image: url('/images/victory.png');
+  /* background-image: url('/images/victory.png'); */
   background-size: cover;
   background-position: center;
 }
