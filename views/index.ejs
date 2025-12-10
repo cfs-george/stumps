@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="color-scheme" content="dark light">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stumps | Cricket Coaching and Mini League</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" type="image/x-icon" href="<%= favicon %>">
+  <link rel="stylesheet" href="/styles/index.css">
+  <script defer src="/scripts/index.js"></script>
+</head>
+<body class="dark">
+  <nav>
+    <div class="nav-left"></div>
+    <img
+      src="<%= stumps_circle_dark %>"
+      alt="Stumps | Cricket Coaching and Mini League"
+      class="center-logo"
+      id="brandLogo"
+    />
+    <div class="nav-right">
+      <button class="dark-mode-toggle" id="darkModeBtn">
+        <i class="fa-solid fa-baseball"></i>
+      </button>
+      <button class="menu-toggle" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+  <div id="sideTray" class="side-tray">
+    <div class="tray-header">
+      <button id="closeTray"><i class="fa-solid fa-times"></i></button>
+    </div>
+    <ul class="tray-links">
+      <li><button id="homeBtn">Home</button></li>
+      <li><button id="contactBtn">Contact</button></li>
+      <li><button id="bookBtn">Book a Session</button></li>
+    </ul>
+    <div class="auth-container">
+      <button id="loginBtn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+      <button id="signupBtn"><i class="fa-solid fa-user-plus"></i> Signup</button>
+    </div>
+  </div>
+  <main>
+    
+    <!-- Updated Carousel HTML -->
+    <!-- <div class="carousel">
+      <div class="carousel-slides-container">
+        <div class="carousel-slide active">
+          <img src="images/subscription_plans.png" alt="Subscription Plans" />
+          <div class="carousel-text-container">
+            <h3>Coaching Plans and Training Packages for Grass Roots Clubs</h3>
+            <p>Tailor-made for all age groups and abilities. Customisation available upon request.</p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="images/top_5_bowlers.png" alt="Top 5 Bowlers" />
+          <div class="carousel-text-container">
+            <h3>Indoor Cricket Mini Leagues<br><br>Coming Soon...</h3>
+            <p>Register with your team for fast-paced weekly fun against other competitive teams.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-signup">
+        <p>Sign up here to access these features</p>
+        <button class="book-btn" id="carouselBookBtn">Let's go <i class="fa-solid fa-baseball-bat-ball"></i></button>
+      </div>
+      <div class="carousel-indicators">
+        <span class="dot active" data-slide="0"></span>
+        <span class="dot" data-slide="1"></span>
+      </div>
+    </div> -->
+
+    <div class="info-section">
+      <p>At Stumps Cricket, our mission is simple: to re-energise cricket in the UK. We deliver exciting, modern and inclusive coaching programmes designed to inspire players of every age and ability. Whether someone is picking up a bat for the very first time, sharpening their skills for club cricket, or striving for higher-level performance, we create an environment that sparks passion, confidence and growth.</p>
+      <div class="section-content">
+        <p>Put feature content here</p>
+      </div>
+      <div class="carousel-signup">
+        <p>Join us at Stumps Cricket as we help shape the next generation of cricketers and bring new energy to the game we love</p>
+        <button class="book-btn" id="carouselBookBtn">Let's go <i class="fa-solid fa-baseball-bat-ball"></i></button>
+      </div>
+    </div>
+    
+    <div class="booking-modal" id="bookingModal">
+      <section class="booking-card" id="booking">
+        <button id="closeBooking"><i class="fa-solid fa-times"></i></button>
+        <h2><i class="fa-solid fa-calendar-check"></i> Book a Session</h2>
+        <div class="booking-text">
+          <p>Our coaches blend innovation with the foundations of the game, using dynamic sessions, fresh ideas and creative challenges to keep players motivated and progressing. We believe cricket should be fun, accessible and forward-thinking — and that everyone deserves the opportunity to experience the joy of the sport in their own way.</p>
+        </div>
+        <div class="booking-form">
+          <form>
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" placeholder="Enter your age" required />
+            </div>
+            <div class="form-group">
+              <label for="contact">Contact Number</label>
+              <input type="tel" id="contact" placeholder="Enter your contact number" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+              <label for="time">Session Time (Fridays)</label>
+              <select id="time" required>
+                <option value="">Select a time</option>
+                <option value="5-6pm">5–6 PM</option>
+                <option value="6-7pm">6–7 PM</option>
+                <option value="7-8pm">7–8 PM</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="focus">Preferred Session Focus</label>
+              <select id="focus" required>
+                <option value="">Select focus</option>
+                <option value="batting">Batting</option>
+                <option value="bowling">Bowling</option>
+                <option value="fielding">Fielding</option>
+                <option value="mixed">Mixed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Session Type</label>
+              <div class="toggle-container" id="sessionTypeToggle">
+                <div class="toggle-option active" data-type="individual">Individual</div>
+                <div class="toggle-option" data-type="group">Group</div>
+              </div>
+            </div>
+            <button type="submit" class="book-btn"><i class="fa-solid fa-paper-plane"></i> Submit Booking</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="modalOverlay" class="modal-overlay"></div>
+  <footer id="contact">
+    <div class="footer-top">
+      <div class="socials">
+        <a href="https://www.instagram.com/stumpscricketuk/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+    <small>© 2025 Stumps. All rights reserved.</small>
+  </footer>
+</body>
+</html>
