@@ -48,8 +48,8 @@ app.use((req, res, next) => {
 });
 
 import Stripe from 'stripe';
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET_KEY;
+// const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+// const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET_KEY;
 // const stripe = Stripe(process.env.STRIPE_SECRET_KEY_TEST);
 // const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET_KEY_TEST;
 
@@ -968,130 +968,130 @@ app.get('/', csrfProtection, async (req, res) => {
 
 
 // Stripe webhooks
-app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
-  const sig = req.headers['stripe-signature'];
-  let event;
+// app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+//   const sig = req.headers['stripe-signature'];
+//   let event;
 
-  try {
-    event = stripe.webhooks.constructEvent(req.body, sig, stripeWebhookSecret);
-  } catch (err) {
-    console.error('Error constructing event:', err);
-    return res.status(400).send(`Webhook Error: ${err.message}`);
-  }
+//   try {
+//     event = stripe.webhooks.constructEvent(req.body, sig, stripeWebhookSecret);
+//   } catch (err) {
+//     console.error('Error constructing event:', err);
+//     return res.status(400).send(`Webhook Error: ${err.message}`);
+//   }
 
-  let customerId, stripeCustomerRef, stripeCustomerData, employerUID, employerRef, employerData, employer, email, name;
+//   let customerId, stripeCustomerRef, stripeCustomerData, employerUID, employerRef, employerData, employer, email, name;
 
-  switch (event.type) {
-    case 'invoice.payment_succeeded':
-      customerId = event.data.object.customer;
-      stripeCustomerRef = ref(db, `stripeCustomers/${customerId}`);
-      stripeCustomerData = await get(stripeCustomerRef);
-      employerUID = stripeCustomerData.val().employerUID;
+//   switch (event.type) {
+//     case 'invoice.payment_succeeded':
+//       customerId = event.data.object.customer;
+//       stripeCustomerRef = ref(db, `stripeCustomers/${customerId}`);
+//       stripeCustomerData = await get(stripeCustomerRef);
+//       employerUID = stripeCustomerData.val().employerUID;
 
-      if (employerUID) {
-        employerRef = ref(db, `employers/${employerUID}`);
-        employerData = await get(employerRef);
-        employer = employerData.val();
-        if (employer && employer.stripeDetails) {
-          email = employer.email;
-          name = employer.companyName;
-          const isYearly = employer.stripeDetails.frequency === 'yearly';
-          if (event.data.object.billing_reason === 'subscription_create') {
-            welcomeEmail(email, name);
-          }
-          await runTransaction(employerRef, (currentData) => {
-            if (currentData) {
-              currentData.paid = true;
-              currentData.paymentFailedDate = null; // Reset on success
-            }
-            return currentData;
-          });
-          infoEmail(`Invoice successfully paid for ${name}, ${email} (${isYearly ? 'yearly' : 'monthly'} subscription).`);
-        } else {
-          console.error('No employer data or stripeDetails found for UID:', employerUID);
-          const eventData = JSON.stringify(event.data.object, null, 2);
-          infoEmail(`No employer data found for UID: ${employerUID}.<br><br>${eventData}`);
-        }
-      } else {
-        console.error('No employer found for customerId:', customerId);
-        const eventData = JSON.stringify(event.data.object, null, 2);
-        infoEmail(`No employer found for customerId: ${customerId}.<br><br>${eventData}`);
-        return res.status(404).send('No employer found');
-      }
-      break;
+//       if (employerUID) {
+//         employerRef = ref(db, `employers/${employerUID}`);
+//         employerData = await get(employerRef);
+//         employer = employerData.val();
+//         if (employer && employer.stripeDetails) {
+//           email = employer.email;
+//           name = employer.companyName;
+//           const isYearly = employer.stripeDetails.frequency === 'yearly';
+//           if (event.data.object.billing_reason === 'subscription_create') {
+//             welcomeEmail(email, name);
+//           }
+//           await runTransaction(employerRef, (currentData) => {
+//             if (currentData) {
+//               currentData.paid = true;
+//               currentData.paymentFailedDate = null; // Reset on success
+//             }
+//             return currentData;
+//           });
+//           infoEmail(`Invoice successfully paid for ${name}, ${email} (${isYearly ? 'yearly' : 'monthly'} subscription).`);
+//         } else {
+//           console.error('No employer data or stripeDetails found for UID:', employerUID);
+//           const eventData = JSON.stringify(event.data.object, null, 2);
+//           infoEmail(`No employer data found for UID: ${employerUID}.<br><br>${eventData}`);
+//         }
+//       } else {
+//         console.error('No employer found for customerId:', customerId);
+//         const eventData = JSON.stringify(event.data.object, null, 2);
+//         infoEmail(`No employer found for customerId: ${customerId}.<br><br>${eventData}`);
+//         return res.status(404).send('No employer found');
+//       }
+//       break;
 
-    case 'invoice.payment_failed':
-      customerId = event.data.object.customer;
-      stripeCustomerRef = ref(db, `stripeCustomers/${customerId}`);
-      stripeCustomerData = await get(stripeCustomerRef);
-      employerUID = stripeCustomerData.val().employerUID;
+//     case 'invoice.payment_failed':
+//       customerId = event.data.object.customer;
+//       stripeCustomerRef = ref(db, `stripeCustomers/${customerId}`);
+//       stripeCustomerData = await get(stripeCustomerRef);
+//       employerUID = stripeCustomerData.val().employerUID;
 
-      if (employerUID) {
-        employerRef = ref(db, `employers/${employerUID}`);
-        employerData = await get(employerRef);
-        employer = employerData.val();
-        if (employer && employer.stripeDetails) {
-          email = employer.email;
-          name = employer.companyName;
-          const isYearly = employer.stripeDetails.frequency === 'yearly';
-          invoiceFailedEmail(email, name);
-          infoEmail(`Invoice payment failed for ${name}, ${email} (${isYearly ? 'yearly' : 'monthly'} subscription).`);
-          await runTransaction(employerRef, (currentData) => {
-            if (currentData) {
-              currentData.paymentFailedDate = new Date().toISOString();
-            }
-            return currentData;
-          });
-        }
-      } else {
-        console.error('No employer found with matching stripeCustomerId');
-      }
-      break;
+//       if (employerUID) {
+//         employerRef = ref(db, `employers/${employerUID}`);
+//         employerData = await get(employerRef);
+//         employer = employerData.val();
+//         if (employer && employer.stripeDetails) {
+//           email = employer.email;
+//           name = employer.companyName;
+//           const isYearly = employer.stripeDetails.frequency === 'yearly';
+//           invoiceFailedEmail(email, name);
+//           infoEmail(`Invoice payment failed for ${name}, ${email} (${isYearly ? 'yearly' : 'monthly'} subscription).`);
+//           await runTransaction(employerRef, (currentData) => {
+//             if (currentData) {
+//               currentData.paymentFailedDate = new Date().toISOString();
+//             }
+//             return currentData;
+//           });
+//         }
+//       } else {
+//         console.error('No employer found with matching stripeCustomerId');
+//       }
+//       break;
 
-    case 'customer.subscription.updated':
-      customerId = event.data.object.customer;
-      stripeCustomerRef = ref(db, `stripeCustomers/${customerId}`);
-      stripeCustomerData = await get(stripeCustomerRef);
-      employerUID = stripeCustomerData.val().employerUID;
-      if (employerUID) {
-        employerRef = ref(db, `employers/${employerUID}`);
-        employerData = await get(employerRef);
-        employer = employerData.val();
-        if (employer && employer.stripeDetails) {
-          email = employer.email;
-          name = employer.companyName;
-          const isYearly = employer.stripeDetails.frequency === 'yearly';
-          const newAmount = event.data.object.plan.amount;
-          const oldAmount = event.data.previous_attributes?.plan?.amount || 'N/A';
-          infoEmail(`Subscription updated for ${name}, ${email} from ${oldAmount} to ${newAmount} (${isYearly ? 'yearly' : 'monthly'} subscription).`);
-        }
-      } else {
-        console.error('No employer found for customerId:', customerId);
-      }
-      break;
+//     case 'customer.subscription.updated':
+//       customerId = event.data.object.customer;
+//       stripeCustomerRef = ref(db, `stripeCustomers/${customerId}`);
+//       stripeCustomerData = await get(stripeCustomerRef);
+//       employerUID = stripeCustomerData.val().employerUID;
+//       if (employerUID) {
+//         employerRef = ref(db, `employers/${employerUID}`);
+//         employerData = await get(employerRef);
+//         employer = employerData.val();
+//         if (employer && employer.stripeDetails) {
+//           email = employer.email;
+//           name = employer.companyName;
+//           const isYearly = employer.stripeDetails.frequency === 'yearly';
+//           const newAmount = event.data.object.plan.amount;
+//           const oldAmount = event.data.previous_attributes?.plan?.amount || 'N/A';
+//           infoEmail(`Subscription updated for ${name}, ${email} from ${oldAmount} to ${newAmount} (${isYearly ? 'yearly' : 'monthly'} subscription).`);
+//         }
+//       } else {
+//         console.error('No employer found for customerId:', customerId);
+//       }
+//       break;
 
-    case 'customer.subscription.deleted':
-      customerId = event.data.object.customer;
-      stripeCustomerRef = ref(db, `stripeCustomers/${customerId}`);
-      stripeCustomerData = await get(stripeCustomerRef);
-      employerUID = stripeCustomerData.val().employerUID;
-      if (employerUID) {
-        await runTransaction(ref(db, `employers/${employerUID}`), (currentData) => {
-          if (currentData && currentData.stripeDetails) {
-            currentData.stripeDetails.customerId = null;
-            currentData.stripeDetails.frequency = null;
-          }
-          return currentData;
-        });
-        await remove(stripeCustomerRef);
-      }
-      break;
+//     case 'customer.subscription.deleted':
+//       customerId = event.data.object.customer;
+//       stripeCustomerRef = ref(db, `stripeCustomers/${customerId}`);
+//       stripeCustomerData = await get(stripeCustomerRef);
+//       employerUID = stripeCustomerData.val().employerUID;
+//       if (employerUID) {
+//         await runTransaction(ref(db, `employers/${employerUID}`), (currentData) => {
+//           if (currentData && currentData.stripeDetails) {
+//             currentData.stripeDetails.customerId = null;
+//             currentData.stripeDetails.frequency = null;
+//           }
+//           return currentData;
+//         });
+//         await remove(stripeCustomerRef);
+//       }
+//       break;
 
-    default:
-      break;
-  }
-  res.send();
-});
+//     default:
+//       break;
+//   }
+//   res.send();
+// });
 
 
 
