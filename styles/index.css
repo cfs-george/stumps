@@ -18,14 +18,14 @@ body.dark {
 }
 @font-face {
   font-family: 'Gellix';
-  src: url('../fonts/Gellix-Regular.ttf') format('truetype');
+  src: url('/fonts/Gellix-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Gellix';
-  src:  url('../fonts/Gellix-Bold.ttf') format('truetype');
+  src:  url('/fonts/Gellix-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;

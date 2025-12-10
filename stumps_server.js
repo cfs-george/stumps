@@ -177,6 +177,7 @@ app.use(
 
 // Serve files
 app.use(express.static(path.join(__dirname, 'images')));
+app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
 app.use('/styles', express.static(path.join(__dirname, 'styles'), {
   setHeaders: (res, path) => {
     res.set("Content-Type", "text/css");
