@@ -148,20 +148,20 @@ app.use(cors({
 
 
 // Initialize Redis
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
-});
-redis.ping().catch((err) => console.error('Redis ping error:', err));
+// const redis = new Redis({
+//   url: process.env.UPSTASH_REDIS_REST_URL,
+//   token: process.env.UPSTASH_REDIS_REST_TOKEN,
+// });
+// redis.ping().catch((err) => console.error('Redis ping error:', err));
 
 
 // Session middleware
 app.use(
   session({
-    store: new RedisStore({
-      client: redis,
-      prefix: 'stumps_session:',
-    }),
+    // store: new RedisStore({
+    //   client: redis,
+    //   prefix: 'stumps_session:',
+    // }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
