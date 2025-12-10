@@ -82,36 +82,36 @@ closeBooking.addEventListener('click', closeModal);
 // Optional: Close on overlay click
 modalOverlay.addEventListener('click', closeModal);
 
-// // Carousel auto progress + dot controls
-// const slides = document.querySelectorAll('.carousel-slide');
-// const dots = document.querySelectorAll('.dot');
-// let currentSlide = 0;
-// let interval;
-// function showSlide(n) {
-//   slides[currentSlide].classList.remove('active');
-//   dots[currentSlide].classList.remove('active');
-//   currentSlide = (n + slides.length) % slides.length;
-//   slides[currentSlide].classList.add('active');
-//   dots[currentSlide].classList.add('active');
-// }
-// function startInterval() {
-//   interval = setInterval(() => showSlide(currentSlide + 1), 5000);
-// }
+// Carousel auto progress + dot controls
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.dot');
+let currentSlide = 0;
+let interval;
+function showSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = (n + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+function startInterval() {
+  interval = setInterval(() => showSlide(currentSlide + 1), 5000);
+}
 
-// // Initial start
-// startInterval();
+// Initial start
+startInterval();
 
-// // Dot click
-// dots.forEach((dot, i) => {
-//   dot.addEventListener('click', () => {
-//     clearInterval(interval);
-//     showSlide(i);
-//     startInterval();
-//   });
-// });
+// Dot click
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    clearInterval(interval);
+    showSlide(i);
+    startInterval();
+  });
+});
 
 // Restart interval on any interaction with carousel
-// document.querySelector('.carousel').addEventListener('click', () => {
-//   clearInterval(interval);
-//   startInterval();
-// });
+document.querySelector('.carousel').addEventListener('click', () => {
+  clearInterval(interval);
+  startInterval();
+});
