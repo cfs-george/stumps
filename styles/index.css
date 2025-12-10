@@ -25,7 +25,7 @@ body.dark {
 }
 @font-face {
   font-family: 'Gellix';
-  src:  url('/fonts/Gellix-Bold.ttf') format('truetype');
+  src: url('/fonts/Gellix-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -345,7 +345,7 @@ main {
   padding: 4.5rem 2rem 5rem;
   min-height: auto;
   gap: 2rem;
-  background-image: url('../images/victory.png');
+  background-image: url('/images/victory.png');
   background-size: cover;
   background-position: center;
 }
